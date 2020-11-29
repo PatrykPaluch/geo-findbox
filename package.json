@@ -1,0 +1,19 @@
+{
+  "name": "geo-findbox",
+  "version": "1.0.0",
+  "description": "Small wdpai school project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Patrykas1000/geo-findbox.git"
+  },
+  "author": "Patryk Paluch",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "bugs": {
+    "url": "https://github.com/Patrykas1000/geo-findbox/issues"
+  },
+  "homepage": "https://github.com/Patrykas1000/geo-findbox#readme"
+}
