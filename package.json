@@ -2,7 +2,7 @@
   "name": "geo-findbox",
   "version": "1.0.0",
   "description": "Small wdpai school project",
-  "main": "index.js",
+  "main": "backend/src/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Patrykas1000/geo-findbox/issues"
   },
-  "homepage": "https://github.com/Patrykas1000/geo-findbox#readme"
+  "homepage": "https://github.com/Patrykas1000/geo-findbox#readme",
+  "dependencies": {
+    "less": "^3.12.2"
+  }
 }

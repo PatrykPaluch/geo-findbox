@@ -1,0 +1,34 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+  font-family: 'Ubuntu', sans-serif;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Roboto', sans-serif;
+}
+
+pre {
+  font-family: 'Ubuntu mono', monospace;
+}
+
+.test-class {
+  &.test__container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+
+    .test__field {
+      width: 5em;
+      height: 5em;
+      line-height: 5em;
+      text-align: center;
+      background-color: white;
+      color: black;
+      font-weight: bold;
+    }
+  }
+}
