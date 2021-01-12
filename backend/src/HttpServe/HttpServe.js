@@ -1,3 +1,5 @@
+const Logger = require("../Utils/Logger").mainLogger;
+
 const http = require("http");
 
 const config = require("./HttpServeConfiguration")
@@ -15,6 +17,7 @@ const Router = require("./FileRouter");
  *
  */
 class HttpServe {
+    static TAG = "HttpServe";
 
     /** @type {Array<PriorityProgram>}*/
     programList;
@@ -66,14 +69,15 @@ class HttpServe {
      * @param {module:http.ServerResponse} res
      */
     handleRequest(req, res){
-        console.log("New request:", req.method, req.url);
+        Logger.logI(HttpServe.TAG, `New request: ${req.method} ${req.url}`);
+
         let data = new HttpServeData();
         for(let i = 0 ; i < this.programList.length ; i++){
 
             let program = this.programList[i].program;
             program.handleRequest(req, res, data);
 
-            console.log("  handled request", i, "|", data.done);
+            Logger.logT(HttpServe.TAG, `  handled request ${i} | ${data.done}`);
 
             if(data.done === true){ // break chain-responsibility
                 break;
@@ -84,7 +88,6 @@ class HttpServe {
             res.writeHead(400);
             res.end("Bad Request");
         }
-        console.log("");
     }
 
     /**
@@ -104,21 +107,22 @@ class HttpServe {
         });
 
         req.on("end", ()=>{
-            console.log(req.headers["content-type"]);
-            console.log(typeof body);
-            console.log(body);
-
             // set body to request
             Object.defineProperty(req, "body", {
                 value: Buffer.concat(body).toString('utf-8'),
                 writable: true
             });
 
+            Object.defineProperty(req, "urlencoded", {
+                value: {},
+                writable: true
+            })
+
             program.handleRequest(req, res);
         });
 
-        req.on("error", ()=>{
-            console.log("[HttpServe]", "http request error");
+        req.on("error", (e)=>{
+            Logger.logE(HttpServe.TAG, `http request error: ${e}`);
         });
 
     }
@@ -135,7 +139,7 @@ class HttpServe {
 
     testPrint(){
         for(let i = 0 ; i < this.programList.length ; i++){
-            console.log(this.programList[i].priority, this.programList[i].program)
+            Logger.logT(HttpServe.TAG, `${this.programList[i].priority} ${this.programList[i].program}`)
         }
     }
 

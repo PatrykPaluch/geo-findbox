@@ -9,6 +9,12 @@ build/
 frontend/public_html/css/main.css
 frontend/public_html/css/main.css.map
 
+# Project logs
+backend/src/logs/
+frontend/logs/
+logs/
+
+
 ##
 ## Node.js
 ##

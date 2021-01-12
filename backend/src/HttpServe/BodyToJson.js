@@ -75,7 +75,7 @@ class BodyToJson extends HttpServeProgram {
         let contentType = req.headers["content-type"];
 
         let newBody;
-        if(contentType.toLowerCase() === "application/json") {
+        if(typeof contentType === 'string' && contentType.toLowerCase() === "application/json") {
             newBody = this.processApplicationJSon(req, res, data);
         }
         else {

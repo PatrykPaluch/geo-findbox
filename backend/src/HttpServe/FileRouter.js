@@ -1,3 +1,5 @@
+const Logger = require("../Utils/Logger").mainLogger;
+
 const HttpServeProgram = require("./HttpServeProgram")
 const fs = require("fs");
 const Path = require("path");
@@ -12,6 +14,7 @@ function addSlashToEnd(str){
 }
 
 class FileRouter extends HttpServeProgram {
+    static TAG = "FileRouter";
 
     /** @type {string} */
     _reqPath;
@@ -35,10 +38,10 @@ class FileRouter extends HttpServeProgram {
     }
 
     handleRequest(req, res, data) {
-        console.log(`    Router "${this._reqPath}" > "${this._filePath}"`);
+        Logger.logT(FileRouter.TAG, `    Router "${this._reqPath}" > "${this._filePath}"`);
 
         if(req.method === "GET"){
-            console.log(`      GET`);
+            Logger.logT(FileRouter.TAG, `      GET`);
 
             if(req.url && req.url.startsWith(this._reqPath)){
                 let lastPartOfUrl = req.url.substring(this._reqPath.length);
@@ -53,7 +56,7 @@ class FileRouter extends HttpServeProgram {
                     }
                 }
 
-                console.log(`      "${req.url}" > "${localURL}"`);
+                Logger.logT(FileRouter.TAG, `      "${req.url}" > "${localURL}"`);
 
                 this.processPage(localURL, req, res, data);
 
@@ -71,7 +74,7 @@ class FileRouter extends HttpServeProgram {
     processPage(path, req, res, data){
         let filePath = Path.join(config.configuration.mainPath, path);
 
-        console.log("      filePath", filePath, "|", "req url", req.url);
+        Logger.logT(FileRouter.TAG, `      ${filePath} ${filePath} | req url ${req.url}`);
 
         fs.access(filePath, fs.constants.R_OK, (err)=>{
             if(err){
