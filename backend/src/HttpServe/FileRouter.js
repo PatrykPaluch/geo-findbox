@@ -11,7 +11,7 @@ function addSlashToEnd(str){
     return str;
 }
 
-class Router extends HttpServeProgram {
+class FileRouter extends HttpServeProgram {
 
     /** @type {string} */
     _reqPath;
@@ -94,4 +94,4 @@ class Router extends HttpServeProgram {
 
 }
 
-module.exports = Router
+module.exports = FileRouter

@@ -1,3 +1,5 @@
+const HttpServeIncomingMessage = require("./HttpServeIncomingMessage")
+
 /**
  * Interface for handling requests from HttpServe application
  */
@@ -10,7 +12,7 @@ class HttpServeProgram {
      * By setting <b><code>data.done</code></b>. to <b><code>true</code></b>. HttpServe application will <b>not</b>
      * send this request to next HttpServeProgram.
      *
-     * @param {module:http.IncomingMessage} req - http request
+     * @param {HttpServeIncomingMessage} req - http request
      * @param {module:http.ServerResponse} res - http response
      * @param {HttpServeData} data - processed data from other HttpServePrograms
      * @see HttpServeData

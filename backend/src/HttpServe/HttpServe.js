@@ -3,7 +3,7 @@ const http = require("http");
 const config = require("./HttpServeConfiguration")
 const HttpServeData = require("./HttpServeData");
 const HttpServeProgram = require("./HttpServeProgram");
-const Router = require("./Router");
+const Router = require("./FileRouter");
 
 /**
  * @typedef {Object} PriorityProgram
@@ -33,7 +33,7 @@ class HttpServe {
     /**
      * Adds program to HttpServe.
      * @param {HttpServeProgram} program
-     * @param {Number} priority
+     * @param {Number} priority - higher number means earlier execution
      */
     addProgram(program, priority = 0){
         if(program === undefined || program === null)
@@ -96,7 +96,7 @@ class HttpServe {
         let program = this;
 
         let body = [];
-        req.setEncoding("utf-8")
+        //req.setEncoding("utf-8")
 
         // store body before passing to programs
         req.on("data", (chunk)=>{
@@ -104,9 +104,13 @@ class HttpServe {
         });
 
         req.on("end", ()=>{
+            console.log(req.headers["content-type"]);
+            console.log(typeof body);
+            console.log(body);
+
             // set body to request
             Object.defineProperty(req, "body", {
-                value: Buffer.concat(body).toString(),
+                value: Buffer.concat(body).toString('utf-8'),
                 writable: true
             });
 
