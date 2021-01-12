@@ -1,5 +1,7 @@
 const fs = require("fs");
 
+const LogFileName = "GeoFindbox.log"
+
 class Logger {
 
     static generateFileName(){
@@ -34,7 +36,7 @@ class Logger {
      * @param {LoggerLevel} initConsoleLevel
      * @param {boolean} useLatestFile
      */
-    constructor(file, initFileLevel = LoggerLevel.ALL, initConsoleLevel = LoggerLevel.Debug, useLatestFile = false ) {
+    constructor(file, initFileLevel = LoggerLevel.ALL, initConsoleLevel = LoggerLevel.DEBUG, useLatestFile = false ) {
         this.#closed = false;
         this.#file = file;
         this.#fileLevel = initFileLevel;
@@ -47,6 +49,9 @@ class Logger {
             flags: 'a',
             autoClose: true,
         });
+
+        this.#fileStream.write("\n");
+        this.#fileStream.write(this.formatMessage(LoggerLevel.TRACE, "Logger", "Started new log session\n"));
 
         if(useLatestFile){
             this.#latestFile = "GeoFindbox-latest.log"
@@ -206,12 +211,13 @@ let LoggerLevel = Object.freeze({
     4:    "WARN",
     2:    "ERROR",
     1:    "Fatal",
+    0:    "OFF",
     "toString": function (value){
         return this[value];
     }
 });
 
-let mainLogger = new Logger(Logger.generateFileName(), LoggerLevel.ALL, LoggerLevel.DEBUG, true);
+let mainLogger = new Logger(LogFileName, LoggerLevel.ALL, LoggerLevel.DEBUG, true);
 
 module.exports = {};
 module.exports.Logger = Logger;
