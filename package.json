@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Patrykas1000/geo-findbox#readme",
   "dependencies": {
-    "less": "^3.12.2"
+    "less": "^3.12.2",
+    "pg": "^8.5.1"
   }
 }

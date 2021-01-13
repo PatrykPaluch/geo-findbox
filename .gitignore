@@ -8,6 +8,7 @@
 build/
 frontend/public_html/css/main.css
 frontend/public_html/css/main.css.map
+backend/src/databaseConfiguration.json
 
 # Project logs
 backend/src/logs/
