@@ -133,6 +133,7 @@ class HttpServe {
      */
     listen(port){
         let server = http.createServer(this.processHttpRequest.bind(this));
+        Logger.logI(HttpServe.TAG, `Server started on port ${port}`);
         server.listen(port);
     }
 

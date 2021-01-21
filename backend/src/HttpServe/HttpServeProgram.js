@@ -1,5 +1,3 @@
-const HttpServeIncomingMessage = require("./HttpServeIncomingMessage")
-
 /**
  * Interface for handling requests from HttpServe application
  */
