@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>GeoFindbox - Login</title>
+
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <script src="js/main.js"></script>
+</head>
+<body>
+
+    <header class="page-top-bar">
+        <img class="logo" src="/img/logo.png" alt="logo">
+    </header>
+
+    <main class="content login-page">
+        <form class="form-box form-login">
+            <span class="form-header">Register</span>
+            <label class="label">
+                <input type="text" placeholder="Twój nick" name="nick" class="label-input">
+                <span class="label-text">Nick</span>
+            </label>
+            <label class="label">
+                <input type="password" placeholder="***** ***" name="password" class="label-input">
+                <span class="label-text">Hasło</span>
+            </label>
+            <label class="label">
+                <input type="password" placeholder="***** ***" name="password-repeat" class="label-input">
+                <span class="label-text">Powtórz hasło</span>
+            </label>
+            <label class="label">
+                <input type="email" placeholder="twoj email" name="email" class="label-input">
+                <span class="label-text">E-mail</span>
+            </label>
+
+            <label class="label label-checkbox">
+                <input type="checkbox" name="license-accept" class="label-input">
+                <span class="label-text">Przeczytałem i akceptuję regulamin</span>
+            </label>
+
+            <div class="button-box">
+                <div class="button">Register</div>
+
+                <div class="button button-small" onclick="redirect('login.html')">Posiadam już konto</div>
+            </div>
+
+        </form>
+    </main>
+
+
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&family=Ubuntu+Mono&family=Ubuntu:ital,wght@0,400;0,700;1,400;1,500&display=swap" rel="stylesheet">
+</body>
+</html>
