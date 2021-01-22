@@ -6,7 +6,7 @@ class Poke extends HttpServeProgram {
     handleRequest(req, res, data) {
         res.setHeader("Content-Type", "application/json");
 
-        res.write(JSON.stringify({message: "Poke"}));
+        res.write(JSON.stringify({message: "pong"}));
     }
 }
 
