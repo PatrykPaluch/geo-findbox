@@ -19,5 +19,9 @@
   "dependencies": {
     "less": "^3.12.2",
     "pg": "^8.5.1"
-  }
+  },
+  "engines": {
+    "node": ">=15.6.0"
+  },
+  "engineStrict": true
 }
