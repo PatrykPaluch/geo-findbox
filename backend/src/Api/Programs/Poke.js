@@ -1,4 +1,4 @@
-const HttpServeProgram = require("../HttpServe/HttpServeProgram")
+const HttpServeProgram = require("../../HttpServe/HttpServeProgram")
 
 class Poke extends HttpServeProgram {
 

@@ -67,7 +67,7 @@ class ApiRouter extends HttpServeProgram {
                     enumerable: true
                 });
 
-                Logger.logT(ApiRouter.TAG, `    API "${this._reqPath}" # "${service}"`);
+                Logger.logT(ApiRouter.TAG, `    API "${this.#reqPath}" # "${service}"`);
                 let program = this.#map.get(service);
 
                 if(program === undefined) { // program not found

@@ -43,6 +43,7 @@ class FileRouter extends HttpServeProgram {
         if(req.method === "GET"){
             Logger.logT(FileRouter.TAG, `      GET`);
 
+
             if(req.url && req.url.startsWith(this._reqPath)){
                 let lastPartOfUrl = req.url.substring(this._reqPath.length);
                 let localURL = Path.join(this._filePath, lastPartOfUrl);
