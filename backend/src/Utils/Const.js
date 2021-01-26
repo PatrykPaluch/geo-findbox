@@ -61,8 +61,7 @@ global.processLoggedCheck = (res, sessionEntry, )=>{
 global.sendErrors = (res, errorMessages) => {
     if (errorMessages.length !== 0) {
         responseEnd(res, 400, {
-            error: "Form data error",
-            formErrors: errorMessages
+            error: errorMessages
         });
         return true;
     }
