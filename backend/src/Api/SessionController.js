@@ -30,7 +30,7 @@ class SessionController {
         if(sessionID){
            let sessionEntry = this.#sessionMap.get(sessionID);
            if(sessionEntry){
-               if(!this.#checkSessionLife(sessionEntry)){
+               if(this.#checkSessionLife(sessionEntry)){
                    sessionEntry.refreshSession();
                    Logger.logT(SessionController.TAG, "Using existing session");
 
@@ -193,5 +193,5 @@ class SessionEntry {
 module.exports = {
     SessionEntry: SessionEntry,
     SessionController: SessionController,
-    sessionController: new SessionController(5000)
+    sessionController: new SessionController(5 * 60 * 1000) // 5min
 };
