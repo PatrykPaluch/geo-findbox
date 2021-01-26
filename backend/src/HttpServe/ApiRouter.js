@@ -79,9 +79,6 @@ class ApiRouter extends HttpServeProgram {
                 }
                 program.handleRequest(req, res, data);
                 data.done = true;
-
-                if(!res.writableEnded)
-                    res.end(); // auto close response (Request to Api are always ended)
             }
             else {
                 data.done = true;
