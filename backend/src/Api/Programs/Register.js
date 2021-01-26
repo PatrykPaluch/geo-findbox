@@ -16,9 +16,9 @@ class Register extends HttpServeProgram {
 
         let userNick = req.body['nick']
         let passwordStr = req.body['password'];
-        let passwordRepeat = req.body['password-repeat'];
+        let passwordRepeat = req.body['password_repeat'];
         let email = req.body['email']
-        let license = req.body['license-accept'];
+        let license = req.body['license_accept'];
 
         userNick = (userNick || "").trim();
         email = (email || "").trim();
