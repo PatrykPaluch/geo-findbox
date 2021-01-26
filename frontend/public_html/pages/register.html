@@ -18,7 +18,7 @@
     </header>
 
     <main class="content login-page">
-        <form class="form-box form-login">
+        <form class="form-box form-login" id="register-form">
             <span class="form-header">Register</span>
             <label class="label">
                 <input type="text" placeholder="Twój nick" name="nick" class="label-input">
@@ -29,7 +29,7 @@
                 <span class="label-text">Hasło</span>
             </label>
             <label class="label">
-                <input type="password" placeholder="***** ***" name="password-repeat" class="label-input">
+                <input type="password" placeholder="***** ***" name="password_repeat" class="label-input">
                 <span class="label-text">Powtórz hasło</span>
             </label>
             <label class="label">
@@ -38,16 +38,18 @@
             </label>
 
             <label class="label label-checkbox">
-                <input type="checkbox" name="license-accept" class="label-input">
+                <input type="checkbox" name="license_accept" class="label-input">
                 <span class="label-text">Przeczytałem i akceptuję regulamin</span>
             </label>
 
             <div class="button-box">
-                <div class="button">Register</div>
+                <div class="button" onclick="processRegister('register-form')">Register</div>
 
                 <div class="button button-small" onclick="redirect('login.html')">Posiadam już konto</div>
             </div>
+            <div class="error-box">
 
+            </div>
         </form>
     </main>
 

@@ -18,30 +18,21 @@
     </header>
 
     <main class="content login-page">
-        <form class="form-box form-login" id="login-form">
-            <span class="form-header">Login</span>
-            <label class="label">
-                <input type="text" placeholder="Twój nick" name="nick" class="label-input">
-                <span class="label-text">Nick</span>
-            </label>
-            <label class="label">
-                <input type="password" placeholder="***** ***" name="password" class="label-input">
-                <span class="label-text">Hasło</span>
-            </label>
 
-            <div class="button-box">
-                <div class="button" onclick="processLogin('login-form')">Login</div>
-
-                <div class="button" onclick="redirect('register.html')">Register</div>
-            </div>
-            <div class="error-box">
-
-            </div>
-        </form>
+        <div class="user-data">
+            <div class="user-nick"></div>
+            <div class="user-email"></div>
+            <div class="user-create-time"></div>
+        </div>
     </main>
 
 
     <!-- fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&family=Ubuntu+Mono&family=Ubuntu:ital,wght@0,400;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <!-- scripts -->
+    <script>
+        setCurrentUser();
+    </script>
+
 </body>
 </html>
