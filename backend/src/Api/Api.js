@@ -15,7 +15,8 @@ class Api {
     #initializeRoutes(){
         let r = this.#router;
         r.addRoute("ping", new (require("./Programs/Poke"))() );
-        r.addRoute("register", new (require("./Programs/Register"))() )
+        r.addRoute("register", new (require("./Programs/Register"))() );
+        r.addRoute("login", new (require("./Programs/Login"))() );
     }
 
 
