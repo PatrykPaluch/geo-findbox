@@ -39,7 +39,7 @@ class Register extends HttpServeProgram {
         if (!license)
             errorMessages.push("Licencja nie zaakceptowana");
 
-        if(this.#sendErrors(res, errorMessages))
+        if(sendErrors(res, errorMessages))
             return;
 
         DB.query(`SELECT user_id, nick, email FROM "User" WHERE nick = $1 OR email = $2`,
@@ -59,7 +59,7 @@ class Register extends HttpServeProgram {
                 if(row.email === email)
                     errorMessages.push("Email jest jus zajety");
 
-                if(this.#sendErrors(res, errorMessages))
+                if(sendErrors(res, errorMessages))
                     return;
             }
 
@@ -85,18 +85,6 @@ class Register extends HttpServeProgram {
         });
 
     }
-
-    #sendErrors(res, errorMessages){
-        if (errorMessages.length !== 0) {
-            responseEnd(res, 400, {
-                error: "Form data error",
-                formErrors: errorMessages
-            });
-            return true;
-        }
-        return false;
-    }
-
 }
 
 module.exports = Register;
