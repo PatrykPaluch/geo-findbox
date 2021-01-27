@@ -29,7 +29,7 @@ class GetFindbox extends HttpServeProgram {
                          F.geo_location as "findbox_geo_location",
                          U.user_id as "user_id",
                          U.nick as "user_nick",
-                         COUNT(L.userlog_id) as "log_count"
+                         (SELECT COUNT(*) FROM "UserLog" L WHERE F.findbox_id = L.findbox_id) as "log_count"
                FROM "Findbox" F 
                     INNER JOIN "User" U on F.author = U.user_id
                     INNER JOIN "UserLog" L on F.findbox_id = L.findbox_id
@@ -38,6 +38,7 @@ class GetFindbox extends HttpServeProgram {
             [findboxId],
             (err, queryRes) => {
                 if(err){
+                    Logger.logE(GetFindbox.TAG, err);
                     processInternalError(res);
                     return;
                 }
