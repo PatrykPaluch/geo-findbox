@@ -32,7 +32,6 @@ class GetFindbox extends HttpServeProgram {
                          (SELECT COUNT(*) FROM "UserLog" L WHERE F.findbox_id = L.findbox_id) as "log_count"
                FROM "Findbox" F 
                     INNER JOIN "User" U on F.author = U.user_id
-                    INNER JOIN "UserLog" L on F.findbox_id = L.findbox_id
                   WHERE F.findbox_id = $1
                   LIMIT 1`,
             [findboxId],
@@ -58,7 +57,11 @@ class GetFindbox extends HttpServeProgram {
                         log_count: row['log_count'],
                     });
                 }
-
+                else  {
+                    responseEnd(res, 404, {
+                       "error": "Nie znaleziono findbox"
+                    });
+                }
 
             });
 

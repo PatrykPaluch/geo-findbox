@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>GeoFindbox - Login</title>
+
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <script src="js/main.js"></script>
+</head>
+<body>
+
+    <header class="page-top-bar">
+        <img class="logo" src="/img/logo.png" alt="logo">
+    </header>
+
+    <div class="content content-panels">
+        <div class="panel-left">
+            <div class="side-top">
+                <div class="user-main">
+                    <img class="user-image" src="/img/profile_picture.jpg">
+                    <div class="user-nick data-user-nick">User name</div>
+                </div>
+            </div>
+            <nav class="side-nav">
+                <div class="side-nav-main">
+                    <span class="nav-entry">
+                        <i class="fa fa-user nav-entry-icon"></i>
+                        <span class="nav-entry-text" onclick="redirect('/profile.html')">Profile</span>
+                    </span>
+                    <span class="nav-entry">
+                        <i class="fa fa-clipboard-check nav-entry-icon"></i>
+                        <span class="nav-entry-text" onclick="showCurrentUserFoundFindboxList()">Findboxes I found</span>
+                    </span>
+                    <span class="nav-entry">
+                        <i class="fa fa-box nav-entry-icon"></i>
+                        <span class="nav-entry-text" onclick="showCurrentUserMyFindboxList()">My Findboxes</span>
+                    </span>
+                </div>
+                <div class="side-nav-actions">
+                    <span class="nav-entry">
+                        <i class="fa fa-plus-square nav-entry-icon"></i>
+                        <span class="nav-entry-text" onclick="redirect('/registerFindbox.html')">Register Findbox</span>
+                    </span>
+                </div>
+            </nav>
+        </div>
+        <div class="panel-right">
+
+            <main class="findbox-info">
+                <div class="findbox-info-main">
+                    <div class="findbox-header">
+                        <i class="fa fa-toolbox findbox-icon"></i>
+                        <h1 class="findbox-name data-findbox-name">Findbox</h1>
+                    </div>
+                    <div class="findbox-status">
+                        <span>Status</span>
+                        <i class="fa status-icon data-findbox-status-icon"></i>
+                        <span class="status-text data-findbox-status-text">Not found</span>
+                    </div>
+                </div>
+                <div class="entry-info-table">
+                    <span class="entry-info-row-title">Type</span>
+                    <span class="entry-info-row-value data-findbox-type">Normal</span>
+
+                    <span class="entry-info-row-title">Author</span>
+                    <span class="entry-info-row-value data-findbox-author">
+                        <span class="data-user-nick">---</span>
+                    </span>
+
+                    <span class="entry-info-row-title">Location</span>
+                    <span class="entry-info-row-value data-findbox-location">Mars, Huygens Crater (13.96°S 55.58°E)</span>
+
+                    <span class="entry-info-row-title">Created</span>
+                    <span class="entry-info-row-value data-findbox-create-time">1970.01.01</span>
+                </div>
+                <div class="findbox-info-description">
+                    <h2 class="findbox-info-description-header">Description</h2>
+                    <p class="findbox-info-description-text data-findbox-description">
+                        Lorem ipsum dolor sit amet
+                    </p>
+                </div>
+            </main>
+
+            <div class="findbox-comment-section">
+                <h3 class="findbox-comment-section-header">Logs</h3>
+                <div class="comment-container">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- templates -->
+    <template id="template-comment-entry">
+        <div class="comment-entry">
+            <div class="comment-author">
+                <span class="author-icon"></span>
+                <span class="author-name data-author-nick">---</span>
+            </div>
+            <div class="comment-status">
+                <span class="data-userlog-found">Found</span>
+                |
+                <span class="data-userlog-create-time">1970.01.01 00:00</span>
+            </div>
+            <div class="comment-content data-userlog-comment">Lorem ipsum dolor sit amet</div>
+        </div>
+    </template>
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&family=Ubuntu+Mono&family=Ubuntu:ital,wght@0,400;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <link href="/css/fa-icons.min.css" rel="stylesheet">
+    <!-- scripts -->
+    <script>
+        onLoad();
+        pageProcessFindbox();
+    </script>
+
+</body>
+</html>

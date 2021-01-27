@@ -9,11 +9,15 @@ const DOM_CLASS_FINDBOX_AUTHOR = ".data-findbox-author";
 const DOM_CLASS_FINDBOX_GEO_LOCATION = "data-findbox-author";
 const DOM_CLASS_FINDBOX_LOG_COUNT = ".data-findbox-log-count"
 
+const DOM_CLASS_FINDBOX_STATUS_TEXT = ".data-findbox-status-text";
+const DOM_CLASS_FINDBOX_STATUS_ICON = ".data-findbox-status-icon";
+
 const DOM_CLASS_USERLOG_FOUND = ".data-userlog-found";
 const DOM_CLASS_USERLOG_COMMENT = ".data-userlog-comment";
 const DOM_CLASS_USERLOG_CREATE_TIME = ".data-userlog-create-time";
 const DOM_CLASS_USERLOG_AUTHOR = ".data-userlog-author";
 const DOM_CLASS_USERLOG_FINDBOX = ".data-userlog-findbox";
+
 
 const DOM_ID_NEWEST_FINDBOX_CONTAINER = "newest-findboxes-container";
 const DOM_ID_MY_FINDBOX_CONTAINER = "my-findboxes-container";
@@ -24,7 +28,8 @@ const DOM_ID_ALL_MY_FINDBOX_CONTAINER = "my-findboxes-all-container"
 // =============================================== Templates
 /** @type {HTMLTemplateElement} */
 let templateFindboxEntry;
-
+/** @type {HTMLTemplateElement} */
+let templateCommentEntry;
 
 // =============================================== Global variables
 /** @type {User} */
@@ -38,6 +43,7 @@ function onLoad(){
 
 function getTemplates(){
     templateFindboxEntry = document.getElementById("template-findbox-entry");
+    templateCommentEntry = document.getElementById("template-comment-entry");
 }
 
 function preparePopups(){
@@ -314,7 +320,7 @@ function api(body, onError, onSuccess){
                     onSuccess(value, response.status);
                 else
                     onError(value, response.status);
-            });
+            }).catch()
         })
         .catch(console.log);
 }
@@ -360,6 +366,47 @@ function pageProcessProfile(){
         }
 
     });
+}
+
+function pageProcessFindbox(){
+    setCurrentUser( (currentUser)=>{
+        let findboxId = new URL(document.URL).searchParams.get("id");
+        if(findboxId === null){
+            redirect("/profile.html");
+            return;
+        }
+        findboxId = parseInt(findboxId);
+
+        getFindbox(findboxId, (findboxJson)=>{
+            getUserLogsForFindbox(findboxId, (userLogsJson)=>{
+                setFindboxPage(findboxJson, userLogsJson);
+            });
+        });
+    });
+}
+
+function setFindboxPage(findboxJson, userLogListJson){
+    console.log(findboxJson, userLogListJson)
+    let findboxElem = document.querySelector(".findbox-info");
+    let findboxUserLogsElem = document.querySelector(".comment-container");
+    let findbox = Findbox.createFromJson(findboxJson);
+    let userLogList = userLogListJson.userLogList.map( logJson => UserLog.createFromJson(logJson) );
+
+
+    let currentFoundThis = false;
+
+    findbox.putInDOM(findboxElem);
+    for(let userLog of userLogList){
+        if(userLog.user.id === currentUser.id){
+            currentFoundThis |= userLog.found;
+        }
+        addUserLogEntry(findboxUserLogsElem, userLog);
+    }
+
+
+    let icon = findboxElem.querySelector(".data-findbox-status-icon");
+    icon.classList.add(currentFoundThis ? "fa-check-square" : "fa-square");
+    icon.style.color = currentFoundThis ? "green" : "red";
 }
 
 
@@ -441,6 +488,28 @@ function setUserProfile(id) {
     });
 }
 
+function getFindbox(id, callback){
+    api({
+        service: 'getFindbox',
+        findbox_id: id
+    }, (json, code) => {
+        redirect("/profile.html");
+    }, (json, code) => {
+       callback(json);
+    });
+}
+
+function getUserLogsForFindbox(id, callback){
+    api({
+        service: 'getUserLog',
+        findbox_id: id
+    }, (json, code) => {
+        console.log(code, json);
+    }, (json, code) => {
+        callback(json);
+    });
+}
+
 
 function setMyFindboxes(userId){
     api({
@@ -450,6 +519,7 @@ function setMyFindboxes(userId){
     }, (json, code) => {
         //do nothing
     }, (json, code) => {
+        console.log(json);
         let findboxList = json.findboxList.map(findboxJson => Findbox.createFromJson(findboxJson));
         let findboxContainer = document.getElementById(DOM_ID_MY_FINDBOX_CONTAINER)
         let popupFindboxContainer = document.getElementById(DOM_ID_ALL_MY_FINDBOX_CONTAINER);
@@ -495,6 +565,22 @@ function addFindboxEntry(parent, findbox){
     });
 
     parent.appendChild(findboxElem);
+}
+
+/**
+ *
+ * @param parent
+ * @param {UserLog} userLog
+ */
+function addUserLogEntry(parent, userLog){
+    const userCommentElem = templateCommentEntry.content.firstElementChild.cloneNode(true);
+    userLog.putInDOM(userCommentElem);
+    const userId = userLog.user.id;
+    userCommentElem.querySelector(".comment-author").addEventListener('click', evt => {
+        redirect(`/profile.html?id=${userId}`);
+    });
+
+    parent.appendChild(userCommentElem);
 }
 
 // =============================================== Popup
