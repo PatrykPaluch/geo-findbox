@@ -30,9 +30,10 @@ async function main(){
 
     serve.addProgram(api.router, 20);
 
-    serve.addProgram(new FileRouter("/css", "/css"), 10);
-    serve.addProgram(new FileRouter("/img", "/img"), 10);
-    serve.addProgram(new FileRouter("/js", "/js"),   10);
+    serve.addProgram(new FileRouter("/css", "/css"),           10);
+    serve.addProgram(new FileRouter("/img", "/img"),           10);
+    serve.addProgram(new FileRouter("/js", "/js"),             10);
+    serve.addProgram(new FileRouter("/webfonts", "/webfonts"), 10);
     serve.addProgram(new FileRouter("/", "/pages"),  9);
 
     serve.listen(8080);
