@@ -367,7 +367,7 @@ label {
 
   &.last {
     margin-left: auto;
-
+    order: 999;
 
     .findbox-entry-icon {
       background-color: white;
@@ -396,5 +396,54 @@ label {
   .findbox-entry-name {
     display: block;
     text-align: center;
+    font-size: 0.9em;
+    overflow: hidden;
+  }
+}
+
+// =============================================== Popup
+.popup {
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  z-index: 1000;
+  position: fixed;
+  background-color: rgba(0,0,0, 0);
+  transition: background-color 0.75s ease-in-out;
+
+  &.popup-display-for-anim {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: unset;
+    height: unset;
+  }
+
+  &.popup-show {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: unset;
+    height: unset;
+    background-color: rgba(0,0,0, 0.8);
+
+    .popup-inner {
+      top: 5vh;
+    }
+  }
+
+  .popup-inner {
+    background-color: @color-secondary-2-light;
+    box-shadow: 0 0 2px 2px black;
+    position: fixed;
+    top: -100vh;
+    left: 10vw;
+    width: 80vw;
+    height: 90vh;
+    transition: top 0.75s ease-in-out;
+
   }
 }
