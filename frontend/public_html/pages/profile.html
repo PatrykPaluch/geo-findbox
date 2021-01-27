@@ -17,18 +17,94 @@
         <img class="logo" src="/img/logo.png" alt="logo">
     </header>
 
-    <main class="content login-page">
-
-        <div class="user-data">
-            <div class="user-nick"></div>
-            <div class="user-email"></div>
-            <div class="user-create-time"></div>
+    <div class="content content-panels">
+        <div class="panel-left">
+            <div class="side-top">
+                <div class="user-main">
+                    <img class="user-image" src="/img/profile_picture.jpg">
+                    <div class="user-nick">User name</div>
+                </div>
+            </div>
+            <nav class="side-nav">
+                <div class="side-nav-main">
+                    <span class="nav-entry">
+                        <i class="fa fa-user nav-entry-icon"></i>
+                        <span class="nav-entry-text">Profile</span>
+                    </span>
+                    <span class="nav-entry">
+                        <i class="fa fa-clipboard-check nav-entry-icon"></i>
+                        <span class="nav-entry-text">Findboxes I found</span>
+                    </span>
+                    <span class="nav-entry">
+                        <i class="fa fa-box nav-entry-icon"></i>
+                        <span class="nav-entry-text">My Findboxes</span>
+                    </span>
+                </div>
+                <div class="side-nav-actions">
+                    <span class="nav-entry">
+                        <i class="fa fa-search-plus nav-entry-icon"></i>
+                        <span class="nav-entry-text">Found Findbox</span>
+                    </span>
+                    <span class="nav-entry">
+                        <i class="fa fa-plus-square nav-entry-icon"></i>
+                        <span class="nav-entry-text">Register Findbox</span>
+                    </span>
+                </div>
+            </nav>
         </div>
-    </main>
+        <main class="panel-right">
+            <div class="about">
+                <h1>Użytkownik</h1>
+                <p>
+                    <span class="user-nick">User Name</span>
+                    jest z nami już od
+                    <span class="user-create-time">1970-01-01 00:00</span>
+                </p>
+            </div>
+            <div class="findboxes-category">
+                <h1>Newest Findboxes</h1>
+                <div class="findboxes-category-container">
+                    <div class="findbox-entry">
+                        <i class="fa fa-toolbox findbox-entry-icon"></i>
+                        <span class="findbox-entry-name">Findbox</span>
+                    </div>
+                    <div class="findbox-entry">
+                        <i class="fa fa-toolbox findbox-entry-icon"></i>
+                        <span class="findbox-entry-name">Findbox</span>
+                    </div>
 
+                    <div class="findbox-entry last">
+                        <i class="fa fa-boxes findbox-entry-icon"></i>
+                        <span class="findbox-entry-name">And more!</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="findboxes-category">
+                <h1>My Findboxes</h1>
+                <div class="findboxes-category-container">
+                    <div class="findbox-entry">
+                        <i class="fa fa-toolbox findbox-entry-icon"></i>
+                        <span class="findbox-entry-name">Findbox</span>
+                    </div>
+                    <div class="findbox-entry">
+                        <i class="fa fa-toolbox findbox-entry-icon"></i>
+                        <span class="findbox-entry-name">Findbox</span>
+                    </div>
+
+                    <div class="findbox-entry last">
+                        <i class="fa fa-boxes findbox-entry-icon"></i>
+                        <span class="findbox-entry-name">And more!</span>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
 
     <!-- fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&family=Ubuntu+Mono&family=Ubuntu:ital,wght@0,400;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <link href="/css/fa-icons.min.css" rel="stylesheet">
     <!-- scripts -->
     <script>
         setCurrentUser();

@@ -115,15 +115,16 @@ function setCurrentUser() {
         const nick = json.nick;
         const email = json.email;
         const createTime = parseDate(json.registration_date);
-        const elem = document.querySelector(".user-data");
-        const elemNick = elem.querySelector(".user-nick");
-        const elemEmail = elem.querySelector(".user-email");
-        const elemCreateTime = elem.querySelector(".user-create-time");
-
-        elem.setAttribute("user_id", json.user_id);
-        elemNick.innerText = nick;
-        elemEmail.innerText = email;
-        elemCreateTime.innerText = createTime;
+        const elemNick = document.querySelectorAll(".user-nick");
+        const elemEmail = document.querySelectorAll(".user-email");
+        const elemCreateTime = document.querySelectorAll(".user-create-time");
+        let set = (nodeList, value)=>{
+            for(let node of nodeList)
+                node.innerText = value;
+        };
+        set(elemNick, nick);
+        set(elemEmail, email);
+        set(elemCreateTime, createTime);
     });
 }
 
